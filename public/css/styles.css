@@ -1,0 +1,11 @@
+body {
+  background-color: rgb(174, 219, 11);
+  color: red;
+}
+
+.home {
+  background-image: url(../images/boy2.png), url(../images/girl.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: left bottom, right bottom;
+  background-size: 400px 800px, 300px 700px;
+}

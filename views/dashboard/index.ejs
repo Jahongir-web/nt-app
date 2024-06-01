@@ -1,0 +1,73 @@
+<div class="container py-4 my-4">
+  <div class="row mb-4">
+    <div class="col">
+      <h1>Hello <%= userName%></h1>
+    </div>
+    <div class="col text-end">
+      <a class="btn btn-primary" href="/dashboard/add">+ New Notion</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <% if(notions.length > 0) { notions.forEach( notion => { %>
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card border-primary" style="min-height: 210px;">
+          <a href="/dashboard/item/<%= notion._id%>" class="card-body text-decoration-none">
+            <h5 class="card-title"><%= notion.title%></h5>
+            <p class="card-text text-truncate"><%= notion.body%></p>
+          </a>
+        </div>
+      </div>
+    <% }) } else { %>
+      <div class="row">
+        <div class="col-3">
+          <img class="img-fluid" src="" alt="simple_img">
+        </div>
+        <div class="col mt-md-4">
+          <h2>Welcome</h2>
+          <h4>Let's start with you first notion!</h4>
+          <a class="btn btn-primary" href="/dashboard/add">Create Now</a>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+  <% if(notions.length > 0) { %>
+    <nav class="mt-3" aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <% if(current == 1) { %>
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+        <% } else { %>
+          <li class="page-item">
+            <a class="page-link" href="/dashboard">First</a>
+          </li>
+        <% } %> 
+        <% let i = current > 5 ? current - 4 : 1 %>
+        <% if(i !== 1) { %>
+          <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <% } %>
+        <% for(; i <= current + 4 && i <= pages; i++) { %>
+          <% if(i == current) { %>
+            <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
+          <% } else { %>
+            <li class="page-item"><a class="page-link" href="/dashboard/?page=<%= i %>"><%= i %></a></li>
+          <% } %>
+          <% if(i == current + 4 && i < pages) { %>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+          <% }%>
+        <% } %>   
+        <% if(pages == current) { %>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        <% } else { %>
+          <li class="page-item">
+            <a class="page-link" href="/dashboard/?page=<%=pages%>">Last</a>
+          </li>
+        <% } %>     
+      </ul>
+    </nav>
+  <% } %>
+</div>

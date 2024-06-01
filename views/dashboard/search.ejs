@@ -1,0 +1,14 @@
+<div class="container mb-4 pb-4 h-100">
+  <h1 class="text-center my-4">Search Results</h1>
+  <div class="row gap-3">
+    <% if(searchResult.length > 0) { searchResult.forEach(notion => { %>
+      <a href="/dashboard/item/<%= notion._id%>" class="col my-4">
+        <h3><%= notion.title%></h3>
+      </a>
+    <% }) %>
+
+    <% } else { %>
+      <h2 class="text-danger text-center my-4">Notion Not Found</h2>
+    <% } %>
+  </div>
+</div>
